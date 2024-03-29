@@ -8,6 +8,7 @@ const nextConfig = {
     });
     // config.infrastructureLogging = { debug: /PackFileCache/ };
     return config;
+    
   },
   images: {
     remotePatterns: [
@@ -20,7 +21,7 @@ const nextConfig = {
   },
   typescript: {
     ignoreBuildErrors: true,
-  },
+  }
 };
 
 export default nextConfig;

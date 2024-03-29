@@ -1,4 +1,3 @@
-import GetAllUsers from "@/actions/user.action";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Eye, Heart } from "lucide-react";
 import Image from "next/image";
@@ -15,7 +14,6 @@ interface PostCardProps {
 }
 
 const PostCard = async ({ imageUrl, author, views, likes }: PostCardProps) => {
-  const users = await GetAllUsers();
 
   return (
     <div>
@@ -28,7 +26,7 @@ const PostCard = async ({ imageUrl, author, views, likes }: PostCardProps) => {
             <AvatarImage className="object-cover" src={author.avatarUrl} />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
-          <span>{users[0].name}</span>
+          <span>{author}</span>
         </div>
         <div className="flex gap-2">
           <p className="flex items-center gap-1">
