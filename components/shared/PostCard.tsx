@@ -14,7 +14,6 @@ interface PostCardProps {
 }
 
 const PostCard = async ({ imageUrl, author, views, likes }: PostCardProps) => {
-
   return (
     <div>
       <div className=" relative h-[400px] w-[300px] rounded-sm sm:size-[468px]">
@@ -26,7 +25,7 @@ const PostCard = async ({ imageUrl, author, views, likes }: PostCardProps) => {
             <AvatarImage className="object-cover" src={author.avatarUrl} />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
-          <span>{author}</span>
+          <span>{author.name}</span>
         </div>
         <div className="flex gap-2">
           <p className="flex items-center gap-1">

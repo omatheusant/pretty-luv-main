@@ -1,3 +1,4 @@
+import { getAllUsers } from "@/actions/user.actions";
 import PostCard from "@/components/shared/PostCard";
 import React from "react";
 
@@ -38,18 +39,20 @@ const posts = [
 ];
 
 const Home = () => {
+  const users = getAllUsers();
+  console.log(users);
   return (
     <section className="mt-16 flex w-full flex-col items-center gap-12">
       {posts.map((post) => (
         <>
-        <PostCard
-          key={post._id}
-          imageUrl={post.imageUrl}
-          author={post.author}
-          likes={post.likes}
-          views={post.views}
+          <PostCard
+            key={post._id}
+            imageUrl={post.imageUrl}
+            author={post.author}
+            likes={post.likes}
+            views={post.views}
           />
-          </>
+        </>
       ))}
     </section>
   );
