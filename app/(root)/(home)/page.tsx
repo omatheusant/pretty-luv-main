@@ -38,9 +38,10 @@ const posts = [
   },
 ];
 
-const Home = () => {
-  const users = getAllUsers();
+const Home = async () => {
+  const users = await getAllUsers();
   console.log(users);
+
   return (
     <section className="mt-16 flex w-full flex-col items-center gap-12">
       {posts.map((post) => (
