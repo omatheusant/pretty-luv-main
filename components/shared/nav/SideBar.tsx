@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { navLinks } from "@/constants";
-import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { Settings } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -51,7 +51,7 @@ const SideBar = () => {
         </div>
       </SignedOut>
       <SignedIn>
-        <div className="absolute bottom-5 mb-6 flex  flex-col gap-3 pt-7">
+        <div className="absolute bottom-5 mb-6 flex flex-col gap-3 pt-7">
           <Link href="/user-profile">
             <Button
               variant="ghost"
@@ -60,6 +60,7 @@ const SideBar = () => {
               <Settings size={28} />
               <span className="text-left text-lg">Conta</span>
             </Button>
+            <UserButton />
           </Link>
         </div>
         <span className="h-7"></span>
