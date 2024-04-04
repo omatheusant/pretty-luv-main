@@ -24,8 +24,8 @@ model User {
   name     String? @db.VarChar(255)
   email    String  @unique @db.VarChar(255)
   imageUrl String  @db.VarChar(255)
-  bio      String?
-  username String? @db.VarChar(50)
+  bio      String? @default("Olá, sou novo(a) aqui.")
+  username String? @unique @db.VarChar(50)
   post     Post[]
   role     Role    @default(USER)
 }

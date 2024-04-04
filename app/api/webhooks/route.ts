@@ -71,5 +71,36 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: "OK", user: dbUser });
   }
 
+  if (eventType === "user.updated") {
+    const { id, email_addresses, image_url, username, first_name, last_name } =
+      evt.data;
+
+    const dbUser = await prismadb.user.updateMany({
+      where: {
+        clerkId: id,
+      },
+      data: {
+        email: email_addresses[0].email_address,
+        name: `${first_name} ${last_name ? ` ${last_name}` : ""}`,
+        username,
+        imageUrl: image_url,
+      },
+    });
+
+    return NextResponse.json({ message: "OK", user: dbUser });
+  }
+
+  if (eventType === "user.deleted") {
+    const { id } = evt.data;
+
+    const deletedUser = prismadb.user.deleteMany({
+      where: {
+        clerkId: id,
+      },
+    });
+
+    return NextResponse.json({ message: "OK", user: deletedUser });
+  }
+
   return new Response("", { status: 200 });
 }
