@@ -75,7 +75,7 @@ export async function POST(req: Request) {
     const { id, email_addresses, image_url, username, first_name, last_name } =
       evt.data;
 
-    const dbUser = await prismadb.user.updateMany({
+    const dbUser = await prismadb.user.update({
       where: {
         clerkId: id,
       },
@@ -93,7 +93,7 @@ export async function POST(req: Request) {
   if (eventType === "user.deleted") {
     const { id } = evt.data;
 
-    const deletedUser = prismadb.user.deleteMany({
+    const deletedUser = prismadb.user.delete({
       where: {
         clerkId: id,
       },
