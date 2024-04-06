@@ -1,5 +1,6 @@
 "use client";
 
+import { deleteUser } from "@/actions/user.actions";
 import { Button } from "@/components/ui/button";
 import { navLinks } from "@/constants";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
@@ -10,6 +11,10 @@ import { usePathname } from "next/navigation";
 import React from "react";
 
 const SideBar = () => {
+  const handleDeleteUser = (id: any) => {
+    deleteUser(id);
+  };
+
   const pathname = usePathname();
   return (
     <nav className="flex-between custom-scrollbar fixed left-0 top-0 z-10 h-full w-[160px] flex-col overflow-y-auto bg-background px-6 shadow-md max-sm:hidden">
@@ -48,6 +53,13 @@ const SideBar = () => {
               Criar conta
             </Button>
           </Link>
+          <Button
+            onClick={() => handleDeleteUser("user_2ehy1ukrK0hrEBG0bTUgYHo2gEE")}
+            variant="outline"
+            className=" w-full rounded-sm px-4 py-3"
+          >
+            Delete
+          </Button>
         </div>
       </SignedOut>
       <SignedIn>

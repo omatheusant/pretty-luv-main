@@ -7,33 +7,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
-  id        Int      @id @default(autoincrement())
-  title     String   @db.VarChar(255)
-  createdAt DateTime @default(now()) @db.Timestamp(6)
-  content   String?
-  published Boolean  @default(false)
-  authorId  Int
-  user      User     @relation(fields: [authorId], references: [id])
-  tags      Tag[]
-}
-
 model User {
-  id       Int     @id @default(autoincrement())
+  id       String  @id @default(uuid())
   clerkId  String  @unique
   name     String? @db.VarChar(255)
   email    String  @unique @db.VarChar(255)
   imageUrl String  @db.VarChar(255)
   bio      String? @default("Olá, sou novo(a) aqui.")
   username String? @unique @db.VarChar(50)
-  post     Post[]
+  posts    Post[]
   role     Role    @default(USER)
 }
 
+model Post {
+  id        String   @id @default(uuid())
+  title     String   @db.VarChar(255)
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+  content   String?
+  published Boolean  @default(false)
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+}
+
 model Tag {
-  id    Int    @id @default(autoincrement())
-  name  String
-  posts Post[]
+  id   String @id @default(uuid())
+  name String
 }
 
 enum Role {

@@ -1,6 +1,7 @@
 "use server";
 
 import prismadb from "@/lib/prismadb";
+import { DeleteUserParams } from "@/types";
 
 export async function getAllUsers() {
   try {
@@ -9,6 +10,23 @@ export async function getAllUsers() {
       return "Nenhum usuário encontrado";
     }
     return { users };
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function deleteUser(params: DeleteUserParams) {
+  try {
+    const { clerkId } = params;
+
+    const deletedUser = prismadb.user.delete({
+      where: {
+        clerkId,
+      },
+    });
+
+    return { deletedUser };
   } catch (error) {
     console.log(error);
     throw error;

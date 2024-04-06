@@ -5,3 +5,7 @@ export interface NavLink {
   icon: LucideIcon;
   label: string;
 }
+
+export interface DeleteUserParams {
+  clerkId: string;
+}
