@@ -20,7 +20,7 @@ export async function deleteUser(params: DeleteUserParams) {
   try {
     const { clerkId } = params;
 
-    const deletedUser = prismadb.user.delete({
+    const deletedUser = await prismadb.user.delete({
       where: {
         clerkId,
       },

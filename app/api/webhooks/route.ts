@@ -93,7 +93,7 @@ export async function POST(req: Request) {
   if (eventType === "user.deleted") {
     const { id } = evt.data;
 
-    const deletedUser = prismadb.user.delete({
+    const deletedUser = await prismadb.user.delete({
       where: {
         clerkId: id,
       },
